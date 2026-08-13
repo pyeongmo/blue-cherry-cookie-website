@@ -1,0 +1,21 @@
+{
+  "name": "blue-cherry-cookie-website",
+  "type": "module",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "deploy": "firebase deploy --only hosting"
+  },
+  "dependencies": {
+    "@astrojs/vue": "^7.0.2",
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.2.1",
+    "firebase": "^12.17.1",
+    "tailwindcss": "^4.3.3",
+    "vue": "^3.5.41"
+  }
+}

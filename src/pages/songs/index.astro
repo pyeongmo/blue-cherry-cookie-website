@@ -1,0 +1,17 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SongCard from '../../components/SongCard.vue';
+import songsData from '../../data/songs.json';
+---
+
+<Layout title="SONGS - BLUE CHERRY COOKIE">
+	<div class="max-w-6xl mx-auto px-4 py-16">
+		<h1 class="text-4xl font-black mb-12 border-l-8 border-brand-accent pl-6 tracking-tighter">SONGS</h1>
+		
+		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+			{songsData.map(song => (
+				<SongCard song={song} client:load />
+			))}
+		</div>
+	</div>
+</Layout>
