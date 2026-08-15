@@ -46,6 +46,7 @@ const detail = computed(
   </article>
 </template>
 
+<!--suppress CssUnusedSymbol -->
 <style scoped>
 .song-detail {
   max-width: 72rem;
