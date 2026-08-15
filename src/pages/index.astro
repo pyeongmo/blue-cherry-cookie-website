@@ -22,8 +22,8 @@ const getPosterUrl = (path: string) => {
 const firstPoster = firstUpcomingGig?.posters?.[0]
   ? getPosterUrl(firstUpcomingGig.posters[0])
   : undefined
-const firstUpcomingTitle = firstUpcomingGig?.title || '제목 미정'
-const firstUpcomingTime = firstUpcomingGig?.time || '시간 미정'
+const firstUpcomingTitle = firstUpcomingGig?.title || ''
+const firstUpcomingTime = firstUpcomingGig?.time || ''
 ---
 
 <Layout title="BLUE CHERRY COOKIE - Home">

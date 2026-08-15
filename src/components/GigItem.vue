@@ -10,9 +10,6 @@ const formatDate = (dateString: string) => {
   const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: '2-digit', day: '2-digit' }
   return new Date(dateString).toLocaleDateString('ko-KR', options)
 }
-
-const displayTitle = (gig: Gig) => gig.title || '제목 미정'
-const displayTime = (gig: Gig) => gig.time || '시간 미정'
 </script>
 
 <template>
@@ -32,10 +29,10 @@ const displayTime = (gig: Gig) => gig.time || '시간 미정'
           </span>
           <span class="text-brand-cookie font-mono">{{ formatDate(gig.date) }}</span>
         </div>
-        <h3 class="mb-2 text-3xl font-bold">{{ displayTitle(gig) }}</h3>
+        <h3 v-if="gig.title" class="mb-2 text-3xl font-bold">{{ gig.title }}</h3>
         <div class="text-lg text-gray-400">
-          <span class="mr-6">📍 {{ gig.location }}</span>
-          <span>⏰ {{ displayTime(gig) }}</span>
+          <span v-if="gig.location" class="mr-6">📍 {{ gig.location }}</span>
+          <span v-if="gig.time">⏰ {{ gig.time }}</span>
         </div>
       </div>
 
@@ -58,7 +55,7 @@ const displayTime = (gig: Gig) => gig.time || '시간 미정'
       >
         <img
           :src="getGigImageUrl(poster)"
-          :alt="`${displayTitle(gig)} poster ${index + 1}`"
+          :alt="`${gig.title} poster ${index + 1}`"
           class="h-full w-full object-cover"
         />
       </div>
