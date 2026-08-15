@@ -1,14 +1,6 @@
 <script setup lang="ts">
 import { getGigImageUrl } from '../utils/image'
-
-interface Gig {
-  title?: string
-  date: string
-  time?: string
-  location: string
-  status: 'upcoming' | 'past'
-  posters?: string[]
-}
+import type { Gig } from '../data/gigs'
 
 defineProps<{
   gig: Gig

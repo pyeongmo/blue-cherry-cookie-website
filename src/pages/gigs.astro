@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro'
 import GigItem from '../components/GigItem.vue'
-import gigsData from '../data/gigs.json'
+import gigsData from '../data/gigs'
 
 const upcomingGigs = gigsData.filter((gig) => gig.status === 'upcoming')
 const pastGigs = gigsData.filter((gig) => gig.status === 'past')

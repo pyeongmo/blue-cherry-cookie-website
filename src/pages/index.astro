@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro'
 import SocialLink from '../components/SocialLink.vue'
 import BlueCherryCookieLogo from '../assets/blue-cherry-cookie-logo.png'
-import gigsData from '../data/gigs.json'
+import gigsData from '../data/gigs'
 
 const firstUpcomingGig = gigsData.find((gig) => gig.status === 'upcoming')
 const posterModules = import.meta.glob('../assets/gigs/**/*.{jpg,jpeg,png,webp,svg}', {

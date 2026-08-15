@@ -1,7 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro'
-import SongDetailSoundCheck from '../../components/SongDetailSoundCheck.vue'
-import SongDetailLine from '../../components/SongDetailLine.vue'
+import SongDetail from '../../components/SongDetail.vue'
 import songsData from '../../data/songs.json'
 
 export function getStaticPaths() {
@@ -12,11 +11,5 @@ const { song } = Astro.props
 ---
 
 <Layout title={`${song.title} - BLUE CHERRY COOKIE`}>
-  {
-    song.slug === 'sound-check' ? (
-      <SongDetailSoundCheck song={song} />
-    ) : (
-      <SongDetailLine song={song} />
-    )
-  }
+  {(<SongDetail song={song} />)}
 </Layout>
