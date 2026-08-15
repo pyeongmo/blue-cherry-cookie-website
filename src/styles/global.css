@@ -1,5 +1,5 @@
-@import "tailwindcss";
-@import "../assets/fonts/Pretendard/static/pretendard.css";
+@import 'tailwindcss';
+@import '../assets/fonts/Pretendard/static/pretendard.css';
 
 @font-face {
   font-family: 'Bebas Neue';
@@ -11,19 +11,27 @@
 
 @theme {
   --color-brand-bg: #000000;
-  --color-brand-text: #FFFFFF;
-  --color-brand-accent: #0047AB;
-  --color-brand-cookie: #F5DEB3;
+  --color-brand-text: #ffffff;
+  --color-brand-accent: #0047ab;
+  --color-brand-cookie: #f5deb3;
   --color-brand-grey: #333333;
 
-  --font-headline: "Bebas Neue", Pretendard, sans-serif;
-  --font-body: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  --font-headline: 'Bebas Neue', Pretendard, sans-serif;
+  --font-body:
+    Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI',
+    'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol', sans-serif;
 }
 
 body {
   @apply bg-brand-bg text-brand-text font-body;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   @apply font-headline;
 }

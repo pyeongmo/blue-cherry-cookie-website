@@ -1,58 +1,22 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import songsData from '../../data/songs.json';
+import Layout from '../../layouts/Layout.astro'
+import SongDetailSoundCheck from '../../components/SongDetailSoundCheck.vue'
+import SongDetailLine from '../../components/SongDetailLine.vue'
+import songsData from '../../data/songs.json'
 
-export async function getStaticPaths() {
-  return songsData.map((song) => ({
-    params: { slug: song.slug },
-    props: { song },
-  }));
+export function getStaticPaths() {
+  return songsData.map((song) => ({ params: { slug: song.slug }, props: { song } }))
 }
 
-const { song } = Astro.props;
+const { song } = Astro.props
 ---
 
 <Layout title={`${song.title} - BLUE CHERRY COOKIE`}>
-	<div class="max-w-4xl mx-auto px-4 py-16">
-		<a href="/songs" class="text-brand-accent hover:text-brand-cookie mb-8 inline-block transition-colors">
-			← Back to List
-		</a>
-		
-		<div class="flex flex-col md:flex-row gap-12 mb-16">
-			<div class="md:w-1/3">
-				<img 
-					src={song.coverImage} 
-					alt={song.title} 
-					class="w-full aspect-square object-cover rounded-2xl shadow-2xl border border-brand-grey"
-				/>
-			</div>
-			
-			<div class="md:w-2/3">
-				<div class="text-brand-accent font-mono mb-2 uppercase tracking-widest">{song.releaseDate} Release</div>
-				<h1 class="text-5xl font-black mb-6 tracking-tighter">{song.title}</h1>
-				
-				<div class="space-y-4 border-l-2 border-brand-grey pl-6 py-2">
-					<div class="flex">
-						<span class="w-20 text-gray-500 font-bold">Lyrics</span>
-						<span class="text-brand-cookie">{song.credits.lyrics}</span>
-					</div>
-					<div class="flex">
-						<span class="w-20 text-gray-500 font-bold">Compose</span>
-						<span class="text-brand-cookie">{song.credits.composer}</span>
-					</div>
-					<div class="flex">
-						<span class="w-20 text-gray-500 font-bold">Arrange</span>
-						<span class="text-brand-cookie">{song.credits.arranger}</span>
-					</div>
-				</div>
-			</div>
-		</div>
-		
-		<section class="border-t border-brand-grey pt-16">
-			<h2 class="text-2xl font-bold mb-10 text-center uppercase tracking-[0.2em] text-gray-400">Lyrics</h2>
-			<div class="text-center text-lg md:text-xl leading-[2] whitespace-pre-wrap max-w-2xl mx-auto">
-				{song.lyrics}
-			</div>
-		</section>
-	</div>
+  {
+    song.slug === 'sound-check' ? (
+      <SongDetailSoundCheck song={song} />
+    ) : (
+      <SongDetailLine song={song} />
+    )
+  }
 </Layout>

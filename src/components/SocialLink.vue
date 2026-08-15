@@ -1,29 +1,22 @@
-<script setup>
-import youtubeIcon from '../assets/icon-youtube.svg';
-import instagramIcon from '../assets/icon-instagram.svg';
+<script setup lang="ts">
+import youtubeIcon from '../assets/icon-youtube.svg'
+import instagramIcon from '../assets/icon-instagram.svg'
 
-defineProps({
-  platform: {
-    type: String,
-    required: true,
-  },
-  url: {
-    type: String,
-    required: true,
-  },
-});
+defineProps<{
+  platform: 'youtube' | 'instagram'
+  url: string
+}>()
 
-const getIcon = (platform) => {
-  if (platform.toLowerCase() === 'youtube') return youtubeIcon.src;
-  if (platform.toLowerCase() === 'instagram') return instagramIcon.src;
-  return null;
-};
+const icons = {
+  youtube: youtubeIcon.src,
+  instagram: instagramIcon.src,
+}
 
-const getPlatformColor = (platform) => {
-  if (platform.toLowerCase() === 'youtube') return 'hover:bg-red-600';
-  if (platform.toLowerCase() === 'instagram') return 'hover:bg-pink-600';
-  return 'hover:bg-brand-accent';
-};
+const getPlatformColor = (platform: string) => {
+  if (platform.toLowerCase() === 'youtube') return 'hover:bg-red-600'
+  if (platform.toLowerCase() === 'instagram') return 'hover:bg-pink-600'
+  return 'hover:bg-brand-accent'
+}
 </script>
 
 <template>
@@ -31,14 +24,14 @@ const getPlatformColor = (platform) => {
     :href="url"
     target="_blank"
     rel="noopener noreferrer"
-    class="inline-flex items-center px-6 py-3 rounded-full text-lg font-bold transition-all duration-300 transform hover:scale-105 group"
+    class="group inline-flex transform items-center rounded-full px-6 py-3 text-lg font-bold transition-all duration-300 hover:scale-105"
     :class="getPlatformColor(platform)"
   >
     <img
-      v-if="getIcon(platform)"
-      :src="getIcon(platform)"
+      v-if="platform"
+      :src="icons[platform]"
       :alt="platform"
-      class="w-6 h-6 mr-3 invert brightness-0 filter transition-all"
+      class="mr-3 h-6 w-6 brightness-0 invert filter transition-all"
     />
     <span v-else class="mr-2">🔗</span>
     {{ platform }}

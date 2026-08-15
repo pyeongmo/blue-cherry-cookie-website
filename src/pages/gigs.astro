@@ -1,36 +1,50 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import GigItem from '../components/GigItem.vue';
-import gigsData from '../data/gigs.json';
+import Layout from '../layouts/Layout.astro'
+import GigItem from '../components/GigItem.vue'
+import gigsData from '../data/gigs.json'
 
-const upcomingGigs = gigsData.filter(gig => gig.status === 'upcoming');
-const pastGigs = gigsData.filter(gig => gig.status === 'past');
+const upcomingGigs = gigsData.filter((gig) => gig.status === 'upcoming')
+const pastGigs = gigsData.filter((gig) => gig.status === 'past')
 ---
 
-<Layout title="GIGS - BLUE CHERRY COOKIE">
-	<div class="max-w-4xl mx-auto px-4 py-16">
-		<h1 class="text-4xl font-black mb-12 border-l-8 border-brand-accent pl-6 tracking-tighter">GIGS</h1>
-		
-		<section class="mb-20">
-			<h2 class="text-2xl font-bold mb-8 text-brand-cookie uppercase tracking-widest">Upcoming Gigs</h2>
-			<div class="space-y-6">
-				{upcomingGigs.length > 0 ? (
-					upcomingGigs.map(gig => <GigItem gig={gig} client:load />)
-				) : (
-					<p class="text-gray-500 italic">진행 예정인 공연이 없습니다. 곧 새로운 소식으로 찾아뵙겠습니다!</p>
-				)}
-			</div>
-		</section>
-		
-		<section>
-			<h2 class="text-2xl font-bold mb-8 text-brand-grey uppercase tracking-widest">Past Gigs</h2>
-			<div class="space-y-6 opacity-80">
-				{pastGigs.length > 0 ? (
-					pastGigs.map(gig => <GigItem gig={gig} client:load />)
-				) : (
-					<p class="text-gray-500 italic">지난 공연 기록이 없습니다.</p>
-				)}
-			</div>
-		</section>
-	</div>
+<Layout title="공연 - BLUE CHERRY COOKIE">
+  <div class="mx-auto max-w-4xl px-4 py-16">
+    <h1 class="border-brand-accent mb-12 border-l-8 pl-6 text-4xl font-black">공연</h1>
+
+    <section class="mb-20">
+      <h2 class="text-brand-cookie mb-8 text-2xl font-bold">다가오는 공연</h2>
+      <div class="space-y-6">
+        {
+          upcomingGigs.length > 0 ? (
+            upcomingGigs.map((gig) => (
+              <div>
+                <GigItem gig={gig} client:load />
+              </div>
+            ))
+          ) : (
+            <p class="text-gray-500 italic">
+              진행 예정인 공연이 없습니다. 곧 새로운 소식으로 찾아뵙겠습니다!
+            </p>
+          )
+        }
+      </div>
+    </section>
+
+    <section>
+      <h2 class="text-brand-grey mb-8 text-2xl font-bold">지난 공연</h2>
+      <div class="space-y-6 opacity-80">
+        {
+          pastGigs.length > 0 ? (
+            pastGigs.map((gig) => (
+              <div>
+                <GigItem gig={gig} client:load />
+              </div>
+            ))
+          ) : (
+            <p class="text-gray-500 italic">지난 공연 기록이 없습니다.</p>
+          )
+        }
+      </div>
+    </section>
+  </div>
 </Layout>

@@ -4,11 +4,20 @@
     "title": "ORBITAL GROOVE",
     "date": "2026-09-19",
     "time": "18:00",
-    "location": "Grim Live House",
+    "location": "홍대 그림라이브하우스",
     "posters": [
-      "/src/assets/gigs/260919/ORBITAL GROOVE POSTER A.jpg",
-      "/src/assets/gigs/260919/ORBITAL GROOVE POSTER B.png"
+      "/src/assets/gigs/260919/ORBITAL GROOVE POSTER A.webp",
+      "/src/assets/gigs/260919/ORBITAL GROOVE POSTER B.webp"
     ],
+    "status": "upcoming"
+  },
+  {
+    "id": 2,
+    "title": "",
+    "date": "2026-11-07",
+    "time": "",
+    "location": "홍대 스윙홀",
+    "posters": [],
     "status": "upcoming"
   }
 ]

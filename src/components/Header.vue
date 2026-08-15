@@ -1,32 +1,30 @@
-<script setup>
-import logoIcon from '../assets/blue-cherry-cookie-icon.png';
+<script setup lang="ts">
+import logoIcon from '../assets/blue-cherry-cookie-icon.png'
 
 const navLinks = [
-  { name: 'HOME', href: '/' },
-  { name: 'GIGS', href: '/gigs' },
-  { name: 'SONGS', href: '/songs' },
-];
+  { name: '공연', href: '/gigs' },
+  { name: '노래', href: '/songs' },
+]
 </script>
 
 <template>
-  <header class="border-b border-brand-grey py-6 px-4">
-    <div class="max-w-6xl mx-auto flex justify-between items-center">
+  <header class="border-brand-grey border-b px-4 py-6">
+    <div class="mx-auto flex max-w-6xl items-center justify-between">
       <a href="/" class="flex items-center transition-all">
         <!-- Mobile Icon -->
-        <img :src="logoIcon.src" alt="BLUE CHERRY COOKIE" class="h-10 block md:hidden" />
+        <img :src="logoIcon.src" alt="BLUE CHERRY COOKIE" class="block h-10 md:hidden" />
         <!-- Desktop Text -->
-        <span class="text-2xl font-headline font-bold text-white hover:text-brand-cookie transition-colors hidden md:block">
+        <span
+          class="font-headline hover:text-brand-cookie hidden text-2xl font-bold text-white transition-colors md:block"
+        >
           BLUE CHERRY COOKIE
         </span>
       </a>
 
       <nav>
-        <ul class="flex space-x-8 font-headline font-medium tracking-wide">
+        <ul class="font-headline flex space-x-8 font-medium">
           <li v-for="link in navLinks" :key="link.name">
-            <a
-              :href="link.href"
-              class="hover:text-brand-accent transition-colors"
-            >
+            <a :href="link.href" class="hover:text-brand-accent transition-colors">
               {{ link.name }}
             </a>
           </li>
