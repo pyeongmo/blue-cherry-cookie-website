@@ -3,13 +3,13 @@ import youtubeIcon from '../assets/icon-youtube.svg'
 import instagramIcon from '../assets/icon-instagram.svg'
 
 defineProps<{
-  platform: 'youtube' | 'instagram'
+  platform: 'YouTube' | 'Instagram'
   url: string
 }>()
 
 const icons = {
-  youtube: youtubeIcon.src,
-  instagram: instagramIcon.src,
+  YouTube: youtubeIcon.src,
+  Instagram: instagramIcon.src,
 }
 
 const getPlatformColor = (platform: string) => {
