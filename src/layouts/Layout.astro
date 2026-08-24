@@ -5,19 +5,98 @@ import Footer from '../components/Footer.vue'
 
 interface Props {
   title?: string
+  description?: string
+  keywords?: string | string[]
+  image?: string
+  imageAlt?: string
+  type?: 'website' | 'music.song' | 'music.album' | 'article' | 'profile'
+  canonicalUrl?: string
+  noindex?: boolean
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[]
 }
 
-const { title = 'BLUE CHERRY COOKIE' } = Astro.props
+const {
+  title = 'BLUE CHERRY COOKIE',
+  description = '나의 마음이 너의 울림이 될 때. 인디 밴드 BLUE CHERRY COOKIE(블루 체리 쿠키)의 공식 웹사이트입니다. 음악, 가사, 공연 일정과 소식을 확인하세요.',
+  keywords = [
+    'BLUE CHERRY COOKIE',
+    '블루 체리 쿠키',
+    '블루체리쿠키',
+    '인디밴드',
+    '인디음악',
+    '밴드',
+    '공연',
+    'Sound Check',
+    '선',
+  ],
+  image = '/og-image.png',
+  imageAlt = 'BLUE CHERRY COOKIE',
+  type = 'website',
+  canonicalUrl,
+  noindex = false,
+  jsonLd,
+} = Astro.props
+
+const siteUrl = Astro.site ?? new URL('https://blue-cherry-cookie.web.app')
+const resolvedCanonical = canonicalUrl || new URL(Astro.url.pathname, siteUrl).href
+const resolvedImageUrl = image.startsWith('http') ? image : new URL(image, siteUrl).href
+const keywordsContent = Array.isArray(keywords) ? keywords.join(', ') : keywords
 ---
 
 <!doctype html>
 <html lang="ko">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="/favicon.ico" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
     <meta name="generator" content={Astro.generator} />
+
+    <!-- SEO Primary Meta Tags -->
     <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywordsContent} />
+    <meta name="author" content="BLUE CHERRY COOKIE" />
+    <meta name="theme-color" content="#0d1117" />
+    <link rel="canonical" href={resolvedCanonical} />
+
+    {
+      noindex ? (
+        <meta name="robots" content="noindex, nofollow" />
+      ) : (
+        <meta name="robots" content="index, follow" />
+      )
+    }
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={type} />
+    <meta property="og:site_name" content="BLUE CHERRY COOKIE" />
+    <meta property="og:url" content={resolvedCanonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={resolvedImageUrl} />
+    <meta property="og:image:alt" content={imageAlt} />
+    <meta property="og:locale" content="ko_KR" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={resolvedCanonical} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={resolvedImageUrl} />
+    <meta name="twitter:image:alt" content={imageAlt} />
+
+    <!-- Structured Data (JSON-LD) -->
+    {
+      jsonLd && (
+        <script
+          is:inline
+          type="application/ld+json"
+          set:html={JSON.stringify(jsonLd)}
+        />
+      )
+    }
   </head>
   <body class="flex min-h-screen flex-col">
     <Header client:load />

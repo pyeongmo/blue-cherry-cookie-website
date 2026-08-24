@@ -11,6 +11,7 @@
     "deploy": "firebase deploy --only hosting"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.3",
     "@astrojs/vue": "^7.0.2",
     "@tailwindcss/vite": "^4.3.3",
     "astro": "^7.2.1",

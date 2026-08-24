@@ -3,7 +3,11 @@ import Layout from '../layouts/Layout.astro'
 import logoIcon from '../assets/blue-cherry-cookie-icon.png'
 ---
 
-<Layout title="404 - BLUE CHERRY COOKIE">
+<Layout
+  title="페이지를 찾을 수 없습니다 (404) | BLUE CHERRY COOKIE"
+  description="요청하신 페이지를 찾을 수 없습니다. 경로가 올바른지 확인해 주세요."
+  noindex={true}
+>
   <section
     class="relative isolate flex min-h-[calc(100vh-166px)] items-center justify-center overflow-hidden px-4 py-20"
   >

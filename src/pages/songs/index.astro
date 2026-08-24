@@ -2,9 +2,37 @@
 import Layout from '../../layouts/Layout.astro'
 import SongCard from '../../components/SongCard.vue'
 import songsData from '../../data/songs.json'
+
+const siteUrl = Astro.site ? Astro.site.origin : 'https://blue-cherry-cookie.web.app'
+
+const songsStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'BLUE CHERRY COOKIE 노래 목록',
+  description: 'BLUE CHERRY COOKIE(블루 체리 쿠키)의 음원 및 수록곡 목록입니다.',
+  itemListElement: songsData.map((song, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    item: {
+      '@type': 'MusicRecording',
+      name: song.title,
+      url: `${siteUrl}/songs/${song.slug}`,
+      datePublished: song.releaseDate,
+      byArtist: {
+        '@type': 'MusicGroup',
+        name: 'BLUE CHERRY COOKIE',
+      },
+    },
+  })),
+}
 ---
 
-<Layout title="노래 - BLUE CHERRY COOKIE">
+<Layout
+  title="노래 | BLUE CHERRY COOKIE"
+  description="BLUE CHERRY COOKIE(블루 체리 쿠키)의 발매 음원 및 수록곡 목록입니다. Sound Check, 선 등 다양한 노래와 가사를 확인해 보세요."
+  keywords={['BLUE CHERRY COOKIE 노래', '블루 체리 쿠키 음원', 'Sound Check', '선', '가사', '인디 음악']}
+  jsonLd={songsStructuredData}
+>
   <div class="mx-auto max-w-6xl px-4 py-16">
     <h1 class="border-brand-accent mb-12 border-l-8 pl-6 text-4xl font-black">노래</h1>
 

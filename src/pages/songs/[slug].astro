@@ -2,14 +2,104 @@
 import Layout from '../../layouts/Layout.astro'
 import SongDetail from '../../components/SongDetail.vue'
 import songsData from '../../data/songs.json'
+import lineCover from '../../assets/songs/line.webp'
+import soundCheckCover from '../../assets/songs/sound-check.webp'
+import lineLyrics from '../../data/lyrics/line'
+import soundCheckLyrics from '../../data/lyrics/sound-check'
 
 export function getStaticPaths() {
   return songsData.map((song) => ({ params: { slug: song.slug }, props: { song } }))
 }
 
 const { song } = Astro.props
+
+const songMeta: Record<
+  string,
+  {
+    cover: string
+    lyricsText: string
+    credits: { lyrics: string; compose: string; arrange: string }
+  }
+> = {
+  line: {
+    cover: lineCover.src,
+    lyricsText: lineLyrics.flatMap((g) => g.lyrics).join('\n\n'),
+    credits: { lyrics: '차민수', compose: '차민수', arrange: 'BLUE CHERRY COOKIE' },
+  },
+  'sound-check': {
+    cover: soundCheckCover.src,
+    lyricsText: soundCheckLyrics.flatMap((g) => g.lyrics).join('\n\n'),
+    credits: { lyrics: '남가범/천송이', compose: '남가범', arrange: 'BLUE CHERRY COOKIE' },
+  },
+}
+
+const currentMeta = songMeta[song.slug] ?? {
+  cover: '/og-image.png',
+  lyricsText: '',
+  credits: { lyrics: '', compose: '', arrange: 'BLUE CHERRY COOKIE' },
+}
+
+const siteUrl = Astro.site ? Astro.site.origin : 'https://blue-cherry-cookie.web.app'
+const songUrl = `${siteUrl}/songs/${song.slug}`
+const coverUrl = currentMeta.cover.startsWith('http')
+  ? currentMeta.cover
+  : `${siteUrl}${currentMeta.cover}`
+
+const songStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'MusicRecording',
+  name: song.title,
+  url: songUrl,
+  image: coverUrl,
+  datePublished: song.releaseDate,
+  inLanguage: 'ko-KR',
+  byArtist: {
+    '@type': 'MusicGroup',
+    name: 'BLUE CHERRY COOKIE',
+    alternateName: '블루 체리 쿠키',
+    url: `${siteUrl}/`,
+  },
+  recordingOf: {
+    '@type': 'MusicComposition',
+    name: song.title,
+    composer: currentMeta.credits.compose
+      ? {
+          '@type': 'Person',
+          name: currentMeta.credits.compose,
+        }
+      : undefined,
+    lyricist: currentMeta.credits.lyrics
+      ? {
+          '@type': 'Person',
+          name: currentMeta.credits.lyrics,
+        }
+      : undefined,
+    lyrics: currentMeta.lyricsText
+      ? {
+          '@type': 'Lyrics',
+          text: currentMeta.lyricsText,
+        }
+      : undefined,
+  },
+}
 ---
 
-<Layout title={`${song.title} - BLUE CHERRY COOKIE`}>
-  {(<SongDetail song={song} />)}
+<Layout
+  title={`${song.title} | BLUE CHERRY COOKIE`}
+  description={`${song.title} - BLUE CHERRY COOKIE(블루 체리 쿠키)의 음원 정보, 크레딧, 전체 가사를 확인하세요. (작사: ${currentMeta.credits.lyrics}, 작곡: ${currentMeta.credits.compose})`}
+  keywords={[
+    song.title,
+    `BLUE CHERRY COOKIE ${song.title}`,
+    `블루체리쿠키 ${song.title}`,
+    '가사',
+    '크레딧',
+    '인디밴드',
+    '노래',
+  ]}
+  image={currentMeta.cover}
+  imageAlt={`${song.title} 앨범 커버`}
+  type="music.song"
+  jsonLd={songStructuredData}
+>
+  <SongDetail song={song} />
 </Layout>

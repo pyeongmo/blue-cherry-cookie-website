@@ -24,9 +24,55 @@ const firstPoster = firstUpcomingGig?.posters?.[0]
   : undefined
 const firstUpcomingTitle = firstUpcomingGig?.title || ''
 const firstUpcomingTime = firstUpcomingGig?.time || ''
+
+const siteUrl = Astro.site ? Astro.site.origin : 'https://blue-cherry-cookie.web.app'
+
+const bandStructuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': `${siteUrl}/#website`,
+      url: `${siteUrl}/`,
+      name: 'BLUE CHERRY COOKIE',
+      description:
+        '나의 마음이 너의 울림이 될 때. 인디 밴드 BLUE CHERRY COOKIE(블루 체리 쿠키)의 공식 웹사이트입니다.',
+      inLanguage: 'ko-KR',
+    },
+    {
+      '@type': 'MusicGroup',
+      '@id': `${siteUrl}/#band`,
+      name: 'BLUE CHERRY COOKIE',
+      alternateName: ['블루 체리 쿠키', '블루체리쿠키'],
+      url: `${siteUrl}/`,
+      logo: `${siteUrl}/og-image.png`,
+      image: `${siteUrl}/og-image.png`,
+      description: '나의 마음이 너의 울림이 될 때 - 인디 밴드 BLUE CHERRY COOKIE 공식 웹사이트',
+      genre: ['Indie Rock', 'Indie Pop', 'Korean Indie'],
+      sameAs: [
+        'https://youtube.com/@bluecherrycookie',
+        'https://instagram.com/bluecherrycookie_band',
+      ],
+    },
+  ],
+}
 ---
 
-<Layout title="BLUE CHERRY COOKIE - Home">
+<Layout
+  title="BLUE CHERRY COOKIE - 인디 밴드 공식 웹사이트"
+  description="나의 마음이 너의 울림이 될 때. 인디 밴드 BLUE CHERRY COOKIE(블루 체리 쿠키)의 공식 웹사이트입니다. 최신 음원, 가사, 라이브 공연 소식을 만나보세요."
+  keywords={[
+    'BLUE CHERRY COOKIE',
+    '블루 체리 쿠키',
+    '블루체리쿠키',
+    '인디밴드',
+    '인디 록',
+    '밴드 공연',
+    'Sound Check',
+    '선',
+  ]}
+  jsonLd={bandStructuredData}
+>
   <section class="mx-auto flex max-w-6xl flex-col items-center px-4 py-20 text-center">
     <div class="mb-12">
       <img

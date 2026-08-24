@@ -5,9 +5,57 @@ import gigsData from '../data/gigs'
 
 const upcomingGigs = gigsData.filter((gig) => gig.status === 'upcoming')
 const pastGigs = gigsData.filter((gig) => gig.status === 'past')
+
+const siteUrl = Astro.site ? Astro.site.origin : 'https://blue-cherry-cookie.web.app'
+
+const gigsStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'BLUE CHERRY COOKIE 공연 일정',
+  description: 'BLUE CHERRY COOKIE(블루 체리 쿠키)의 라이브 콘서트 및 공연 일정 목록입니다.',
+  itemListElement: gigsData.map((gig, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    item: {
+      '@type': 'MusicEvent',
+      name: gig.title || 'BLUE CHERRY COOKIE 라이브 공연',
+      startDate: gig.date,
+      eventStatus:
+        gig.status === 'upcoming'
+          ? 'https://schema.org/EventScheduled'
+          : 'https://schema.org/EventCompleted',
+      location: {
+        '@type': 'Place',
+        name: gig.location,
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: gig.location,
+        },
+      },
+      performer: {
+        '@type': 'MusicGroup',
+        name: 'BLUE CHERRY COOKIE',
+        alternateName: '블루 체리 쿠키',
+        url: `${siteUrl}/`,
+      },
+    },
+  })),
+}
 ---
 
-<Layout title="공연 - BLUE CHERRY COOKIE">
+<Layout
+  title="공연 | BLUE CHERRY COOKIE"
+  description="BLUE CHERRY COOKIE(블루 체리 쿠키)의 라이브 공연 일정 및 지난 공연 기록입니다. 다가오는 공연의 날짜, 장소, 시간 정보를 확인하세요."
+  keywords={[
+    'BLUE CHERRY COOKIE 공연',
+    '블루 체리 쿠키 공연',
+    '인디밴드 라이브',
+    '공연 일정',
+    '콘서트',
+    '단독공연',
+  ]}
+  jsonLd={gigsStructuredData}
+>
   <div class="mx-auto max-w-4xl px-4 py-16">
     <h1 class="border-brand-accent mb-12 border-l-8 pl-6 text-4xl font-black">공연</h1>
 
