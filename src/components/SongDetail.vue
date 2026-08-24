@@ -16,7 +16,7 @@ const songDetails = {
   'sound-check': {
     cover: soundCheckCover.src,
     lyrics: soundCheckLyrics,
-    credits: { lyrics: '남가범', compose: '남가범', arrange: 'BLUE CHERRY COOKIE' },
+    credits: { lyrics: '남가범/천송이', compose: '남가범', arrange: 'BLUE CHERRY COOKIE' },
   },
 } as const
 
