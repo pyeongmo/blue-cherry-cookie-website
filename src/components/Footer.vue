@@ -28,6 +28,8 @@ const getPlatformColor = (platform: string) => {
             :src="instagramIcon.src"
             alt="instagram"
             class="h-4 w-4 brightness-0 invert filter transition-all"
+            loading="lazy"
+            fetchpriority="low"
           />
         </a>
         <a
@@ -41,6 +43,8 @@ const getPlatformColor = (platform: string) => {
             :src="youtubeIcon.src"
             alt="youtube"
             class="h-4 w-4 brightness-0 invert filter transition-all"
+            loading="lazy"
+            fetchpriority="low"
           />
         </a>
       </div>

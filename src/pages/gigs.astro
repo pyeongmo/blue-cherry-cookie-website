@@ -12,7 +12,7 @@ const gigsStructuredData = {
   '@context': 'https://schema.org',
   '@type': 'ItemList',
   name: 'BLUE CHERRY COOKIE 공연 일정',
-  description: 'BLUE CHERRY COOKIE(블루체리쿠키)의 공연 일정 목록입니다.',
+  description: '블루체리쿠키의 공연 일정 목록입니다.',
   itemListElement: gigsData.map((gig, index) => ({
     '@type': 'ListItem',
     position: index + 1,
@@ -45,14 +45,8 @@ const gigsStructuredData = {
 
 <Layout
   title="공연 | BLUE CHERRY COOKIE"
-  description="BLUE CHERRY COOKIE(블루체리쿠키)의 공연 일정 및 지난 공연 기록입니다. 다가오는 공연의 날짜, 장소, 시간 정보를 확인하세요."
-  keywords={[
-    'BLUE CHERRY COOKIE 공연',
-    '블루체리쿠키 공연',
-    '인디밴드 라이브',
-    '공연 일정',
-    '콘서트',
-  ]}
+  description="블루체리쿠키의 공연 일정 및 지난 공연 기록입니다."
+  keywords={['BLUE CHERRY COOKIE 공연', '블루체리쿠키 공연', '공연 일정', '콘서트']}
   jsonLd={gigsStructuredData}
 >
   <div class="mx-auto max-w-4xl px-4 py-16">

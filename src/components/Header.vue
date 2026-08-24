@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import logoIcon from '../assets/blue-cherry-cookie-icon.png'
+import logoIcon from '../assets/blue-cherry-cookie-icon-192.png'
 
 const navLinks = [
   { name: '공연', href: '/gigs' },

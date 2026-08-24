@@ -86,14 +86,14 @@ const songStructuredData = {
 
 <Layout
   title={`${song.title} | BLUE CHERRY COOKIE`}
-  description={`${song.title} - BLUE CHERRY COOKIE(블루체리쿠키)의 음원 정보, 크레딧, 전체 가사를 확인하세요. (작사: ${currentMeta.credits.lyrics}, 작곡: ${currentMeta.credits.compose})`}
+  description={`${song.title} - 작사: ${currentMeta.credits.lyrics}, 작곡: ${currentMeta.credits.compose}`}
   keywords={[
     song.title,
     `BLUE CHERRY COOKIE ${song.title}`,
     `블루체리쿠키 ${song.title}`,
     '가사',
     '크레딧',
-    '인디밴드',
+    '취미밴드',
     '노래',
   ]}
   image={currentMeta.cover}

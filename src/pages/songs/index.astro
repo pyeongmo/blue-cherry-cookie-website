@@ -9,7 +9,7 @@ const songsStructuredData = {
   '@context': 'https://schema.org',
   '@type': 'ItemList',
   name: 'BLUE CHERRY COOKIE 노래 목록',
-  description: 'BLUE CHERRY COOKIE(블루체리쿠키)의 자작곡 목록입니다.',
+  description: '블루체리쿠키의 자작곡 목록입니다.',
   itemListElement: songsData.map((song, index) => ({
     '@type': 'ListItem',
     position: index + 1,
@@ -29,8 +29,8 @@ const songsStructuredData = {
 
 <Layout
   title="노래 | BLUE CHERRY COOKIE"
-  description="BLUE CHERRY COOKIE(블루체리쿠키)의 자작곡 목록입니다."
-  keywords={['BLUE CHERRY COOKIE 노래', '블루체리쿠키 노래', '가사', '인디 음악']}
+  description="블루체리쿠키의 자작곡 목록입니다."
+  keywords={['BLUE CHERRY COOKIE 노래', '블루체리쿠키 노래', '가사']}
   jsonLd={songsStructuredData}
 >
   <div class="mx-auto max-w-6xl px-4 py-16">
