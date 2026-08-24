@@ -17,18 +17,8 @@ interface Props {
 
 const {
   title = 'BLUE CHERRY COOKIE',
-  description = '나의 마음이 너의 울림이 될 때. 인디 밴드 BLUE CHERRY COOKIE(블루 체리 쿠키)의 공식 웹사이트입니다. 음악, 가사, 공연 일정과 소식을 확인하세요.',
-  keywords = [
-    'BLUE CHERRY COOKIE',
-    '블루 체리 쿠키',
-    '블루체리쿠키',
-    '인디밴드',
-    '인디음악',
-    '밴드',
-    '공연',
-    'Sound Check',
-    '선',
-  ],
+  description = '밴드 BLUE CHERRY COOKIE(블루체리쿠키)의 공식 웹사이트입니다. 음악, 가사, 공연 일정과 소식을 확인하세요.',
+  keywords = ['BLUE CHERRY COOKIE', '블루체리쿠키', '인디밴드', '인디음악', '밴드', '공연'],
   image = '/og-image.png',
   imageAlt = 'BLUE CHERRY COOKIE',
   type = 'website',
@@ -88,15 +78,7 @@ const keywordsContent = Array.isArray(keywords) ? keywords.join(', ') : keywords
     <meta name="twitter:image:alt" content={imageAlt} />
 
     <!-- Structured Data (JSON-LD) -->
-    {
-      jsonLd && (
-        <script
-          is:inline
-          type="application/ld+json"
-          set:html={JSON.stringify(jsonLd)}
-        />
-      )
-    }
+    {jsonLd && <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
   </head>
   <body class="flex min-h-screen flex-col">
     <Header client:load />
