@@ -29,6 +29,7 @@ const coverImages: Record<string, string> = {
         :src="coverImages[song.slug] || song.coverImage"
         :alt="song.title"
         class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+        fetchpriority="high"
       />
     </div>
     <div class="p-6">

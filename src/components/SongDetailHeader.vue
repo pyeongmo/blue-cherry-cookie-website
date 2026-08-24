@@ -19,7 +19,12 @@ defineProps<{
   </a>
   <header class="grid items-center gap-10 md:grid-cols-[minmax(18rem,30rem)_1fr] md:gap-20">
     <div class="relative max-w-120 border border-(--accent) shadow-[1rem_1rem_0_var(--soft)]">
-      <img :src="cover" :alt="title" class="block aspect-square w-full object-cover" />
+      <img
+        :src="cover"
+        :alt="title"
+        class="block aspect-square w-full object-cover"
+        fetchpriority="high"
+      />
     </div>
     <div class="max-w-152">
       <p class="font-headline text-base tracking-[.14em] text-(--accent)">{{ releaseDate }}</p>
