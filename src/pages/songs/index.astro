@@ -1,6 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro'
-import SongCard from '../../components/SongCard.vue'
+import SongCard from '../../components/SongCard.astro'
 import songsData from '../../data/songs.json'
 
 const siteUrl = Astro.site ? Astro.site.origin : 'https://blue-cherry-cookie.web.app'
@@ -37,7 +37,7 @@ const songsStructuredData = {
     <h1 class="border-brand-accent mb-12 border-l-8 pl-6 text-4xl font-black">노래</h1>
 
     <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-      {songsData.map((song) => <SongCard song={song} client:load />)}
+      {songsData.map((song) => <SongCard song={song} />)}
     </div>
   </div>
 </Layout>

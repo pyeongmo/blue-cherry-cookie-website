@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro'
-import SocialLink from '../components/SocialLink.vue'
+import SocialLink from '../components/SocialLink.astro'
 import BlueCherryCookieLogo from '../assets/blue-cherry-cookie-logo.webp'
 import gigsData from '../data/gigs'
 
@@ -87,12 +87,8 @@ const bandStructuredData = {
     </p>
 
     <div class="flex flex-wrap justify-center gap-6">
-      <SocialLink platform="YouTube" url="https://youtube.com/@bluecherrycookie" client:load />
-      <SocialLink
-        platform="Instagram"
-        url="https://instagram.com/bluecherrycookie_band"
-        client:load
-      />
+      <SocialLink platform="YouTube" url="https://youtube.com/@bluecherrycookie" />
+      <SocialLink platform="Instagram" url="https://instagram.com/bluecherrycookie_band" />
     </div>
 
     {

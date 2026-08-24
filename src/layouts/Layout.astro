@@ -1,7 +1,7 @@
 ---
 import '../styles/global.css'
-import Header from '../components/Header.vue'
-import Footer from '../components/Footer.vue'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
 
 interface Props {
   title?: string
@@ -81,10 +81,10 @@ const keywordsContent = Array.isArray(keywords) ? keywords.join(', ') : keywords
     {jsonLd && <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
   </head>
   <body class="flex min-h-screen flex-col">
-    <Header client:load />
+    <Header />
     <main class="grow">
       <slot />
     </main>
-    <Footer client:load />
+    <Footer />
   </body>
 </html>

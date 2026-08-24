@@ -1,0 +1,35 @@
+---
+import logoIcon from '../assets/blue-cherry-cookie-icon-192.png'
+
+const navLinks = [
+  { name: '공연', href: '/gigs' },
+  { name: '노래', href: '/songs' },
+]
+---
+
+<header class="border-brand-grey border-b px-4 py-6">
+  <div class="mx-auto flex max-w-6xl items-center justify-between">
+    <a href="/" class="flex items-center transition-all">
+      <img src={logoIcon.src} alt="BLUE CHERRY COOKIE" class="block h-10 md:hidden" />
+      <span
+        class="font-headline hover:text-brand-cookie hidden text-2xl font-bold text-white transition-colors md:block"
+      >
+        BLUE CHERRY COOKIE
+      </span>
+    </a>
+
+    <nav>
+      <ul class="font-headline flex space-x-8 font-medium">
+        {
+          navLinks.map((link) => (
+            <li>
+              <a href={link.href} class="hover:text-brand-accent transition-colors">
+                {link.name}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</header>

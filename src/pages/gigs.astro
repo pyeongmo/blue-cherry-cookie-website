@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro'
-import GigItem from '../components/GigItem.vue'
+import GigItem from '../components/GigItem.astro'
 import gigsData from '../data/gigs'
 
 const upcomingGigs = gigsData.filter((gig) => gig.status === 'upcoming')
@@ -59,7 +59,7 @@ const gigsStructuredData = {
           upcomingGigs.length > 0 ? (
             upcomingGigs.map((gig) => (
               <div>
-                <GigItem gig={gig} client:load />
+                <GigItem gig={gig} />
               </div>
             ))
           ) : (
@@ -76,7 +76,7 @@ const gigsStructuredData = {
           pastGigs.length > 0 ? (
             pastGigs.map((gig) => (
               <div>
-                <GigItem gig={gig} client:load />
+                <GigItem gig={gig} />
               </div>
             ))
           ) : (
