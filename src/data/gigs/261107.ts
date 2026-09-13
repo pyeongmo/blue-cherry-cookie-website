@@ -2,11 +2,11 @@ import type { Gig } from './index'
 
 const gig: Gig = {
   id: 2,
-  title: '',
+  title: 'ROCK LIVE',
   date: '2026-11-07',
-  time: '',
+  time: '18:00',
   location: '홍대 스윙홀',
-  posters: [],
+  posters: ['/src/assets/gigs/261107/ROCK LIVE POSTER.webp'],
   status: 'upcoming',
 }
 
