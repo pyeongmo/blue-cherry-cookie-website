@@ -10,7 +10,7 @@ const gig: Gig = {
     '/src/assets/gigs/260919/ORBITAL GROOVE POSTER A.webp',
     '/src/assets/gigs/260919/ORBITAL GROOVE POSTER B.webp',
   ],
-  status: 'upcoming',
+  status: 'past',
 }
 
 export default gig
